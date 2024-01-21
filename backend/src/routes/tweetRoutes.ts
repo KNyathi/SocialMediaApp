@@ -1,8 +1,10 @@
 import {Router} from 'express';
 import { PrismaClient } from '@prisma/client';
+import jwt from 'jsonwebtoken';
 
 const router = Router();
 const prisma = new PrismaClient();
+const JWT_SECRET = "SUPER SECRET";
 
 //User CRUD endpoints defined here
 
@@ -12,7 +14,10 @@ curl -X POST -H "Content-Type: application/json"  -d "{\"content\": \"I'm crazil
 
 //Create a tweet
 router.post('/', async (req, res) => {
-	const {content, image, userId} = req.body;
+	
+	const {content, image} = req.body;
+	//@ts-ignore
+	const user = req.user;
 	
 	try{
 	
@@ -20,7 +25,7 @@ router.post('/', async (req, res) => {
 		data: {
 			content,
 			image,
-			userId //to manage based on the authenticated user
+			userId: user.id, 
 		},
 	
 	}); 
@@ -61,7 +66,11 @@ router.get('/', async (req, res) => {
 //get one tweet
 router.get('/:id', async (req, res) => {
 	const { id } =  req.params;
-	const tweet = await prisma.tweet.findUnique({ where: {id: Number(id)} });
+	const tweet = await prisma.tweet.findUnique({ 
+	   where: {id: Number(id)},
+	   include: { user: true},
+	   
+	   });
 	
 	if(!tweet) {
 		return res.status(404).json({error: "Tweet not found!"});
