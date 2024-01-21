@@ -7,6 +7,16 @@ const prisma = new PrismaClient();
 
 //User CRUD endpoints defined here
 
+
+/*
+  Test with curl:
+
+  curl -X POST -H "Content-Type: application/json" \
+       -d '{"name": "James Ndlove", "email": "james@gmail.com", "username": "Jammy"}' \
+       http://localhost:8000/user/
+
+*/
+
 //Create a User
 router.post('/', async (req, res) => {
 	const {email, name, username} = req.body;
@@ -52,6 +62,17 @@ router.get('/:id', async (req, res) => {
 
 
 
+
+
+/*
+  Test with curl:
+
+  curl -X PUT -H "Content-Type: application/json" \
+       -d '{"name": "Jack", "bio": "I'm excited to be here!"}' \
+       http://localhost:8000/user/1
+
+*/
+
 //update user
 router.put('/:id', async (req, res) => {
 	const { id } =  req.params;
@@ -73,10 +94,14 @@ router.put('/:id', async (req, res) => {
 
 
 
+
+
+// curl -X DELETE http://localhost:8000/user/6
+
 //delete user
 router.delete('/:id', async (req, res) => {
 	const { id } =  req.params;
-	prisma.user.delete({where: {id: Number(id)}})
+	await prisma.user.delete({where: {id: Number(id)}})
 	res.sendStatus(200);
 });
 
