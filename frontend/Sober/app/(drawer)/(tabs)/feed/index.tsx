@@ -1,10 +1,32 @@
-import { StyleSheet, View, FlatList, Pressable} from 'react-native';
+import { StyleSheet, View, FlatList, Pressable, Text, Alert, ActivityIndicator} from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
-import tweets from '@/assets/data/tweets';
 import Tweet from '@/components/Tweet';
 import { Link } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { useTweetsApi } from '../../../../lib/api/tweets';
+import { useQuery } from '@tanstack/react-query';
 
-export default function TabOneScreen() {
+
+export default function FeedScreen() {
+
+  const { listTweets } = useTweetsApi();
+  
+  const { data, isLoading, error } = useQuery({
+     queryKey: ['tweets'],
+     queryFn: listTweets,
+   });
+
+  if (isLoading) {
+    return <ActivityIndicator />;
+  }
+  
+  if (error) {
+     return <Text> {error.message} </Text>;
+  }
+  
+  
+  
+  
   return (
   <View style= { styles.page}>
   

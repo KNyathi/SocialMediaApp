@@ -15,7 +15,7 @@ type TweetProps = {
 const Tweet = ({tweet}: TweetProps) => {
   return (
   
-  <Link href={`/tweet/${tweet.id}/`} asChild>  
+  <Link href={`/feed/tweet/${tweet.id}/`} asChild>  
    <Pressable style={styles.container}>
    
        
@@ -48,6 +48,7 @@ const Tweet = ({tweet}: TweetProps) => {
       </View>
     </Pressable>
   </Link> 
+  
   );
 
 };

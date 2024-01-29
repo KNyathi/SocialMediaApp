@@ -1,6 +1,7 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
+import { sendEmailToken } from '../services/emailService';
 
 
 const EMAIL_TOKEN_EXPIRATION_MINUTES = 10;
@@ -11,9 +12,9 @@ const router = Router();
 const prisma = new PrismaClient();
 
 
-//generate a random 8 digit number as the email token
+//generate a random 6 digit number as the email token
 function generateEmailToken(): string {
-  return Math.floor(10000000 + Math.random()*90000000).toString();
+  return Math.floor(100000 + Math.random()*900000).toString();
 }
 
 
@@ -62,6 +63,8 @@ router.post('/login', async (req, res) => {
         
         console.log(createdToken);
         //send emailToken to user's email
+        
+        await sendEmailToken(email, emailToken);
         
         res.sendStatus(200);
         } catch (e) {
