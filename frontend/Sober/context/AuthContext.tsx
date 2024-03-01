@@ -6,7 +6,7 @@ const AuthContext = createContext({});
 
 const AuthContextProvider = ({children}: PropsWithChildren) => {
   const [authToken, setAuthToken]  = useState<string | null>(null);
-  const segment = useSegments();
+  const segments = useSegments();
   const router = useRouter();
   
   console.log("AuthToken: ", authToken);

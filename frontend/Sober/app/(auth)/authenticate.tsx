@@ -1,17 +1,17 @@
 import { View, Text, TextInput, Pressable, StyleSheet, Alert } from 'react-native';
 import React, { useState } from 'react';
-import { useSearchParams } from 'expo-router';
+import { useLocalSearchParams } from 'expo-router';
 import { authenticate } from '../../lib/api/auth';
 import { useAuth } from '../../context/AuthContext';
 
-const Authenticate = {} => {
+const Authenticate = () => {
   const [code, setCode]  = useState('');
-  const { email } = useSearchParams();
+  const { email } = useLocalSearchParams();
   
   const { updateAuthToken } = useAuth();
   
   const onConfirm = async () => {
-   if (typeof email != 'string') {
+   if (typeof email !== 'string') {
     return;
    }
   

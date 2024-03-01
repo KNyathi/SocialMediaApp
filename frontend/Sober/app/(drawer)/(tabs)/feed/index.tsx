@@ -30,10 +30,10 @@ export default function FeedScreen() {
   return (
   <View style= { styles.page}>
   
-    <FlatList data={tweets} renderItem= {({item}) => <Tweet tweet={item} />}/>
+    <FlatList data={data} renderItem= {({item}) => <Tweet tweet={item} />}/>
     
     <Pressable style={styles.floatingButton}>
-      <Link href='/new-tweet/' asChild >
+      <Link href='/new-tweet' asChild >
         <FontAwesome name="plus-square" size={24} color="white" style={styles.floatingButton} />     
       </Link>
     </Pressable>

@@ -12,7 +12,7 @@ export const login = async (data: {email: string}) => {
   
   });
   
-  if (res.status != 200) {
+  if (res.status !== 200) {
     throw new Error('Error during the login process');
   }
 };
@@ -28,7 +28,7 @@ export const authenticate = async (data: { email: string; emailToken: string;}) 
   
   });
   
-  if (res.status != 200) {
+  if (res.status !== 200) {
     throw new Error('Error during the login process');
   }
   

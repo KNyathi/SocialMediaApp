@@ -28,7 +28,7 @@ router.post('/', async (req, res) => {
 			email,
 			name, 
 			username,
-			bio: "Hello, I'm new on Twitter",
+			bio: "Hello, I'm new on Sober",
 		},
 	
 	}); 

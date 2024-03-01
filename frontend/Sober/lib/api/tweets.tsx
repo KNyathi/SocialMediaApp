@@ -1,5 +1,5 @@
 import { API_URL} from './config';
-import { createContext, PropsWithChildren, useContext } from 'react';
+import { createContext, PropsWithChildren, useCallback, useEffect, useContext, useState, } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
 const TweetsApiContext = createContext({});
@@ -24,7 +24,7 @@ const TweetsApiContextProvider = ({children}: PropsWithChildren) => {
        }
        
        
-       if (res.status != 200) {
+       if (res.status !== 200) {
           throw new Error("Error fetching tweets");
        }
         return await res.json();
@@ -51,7 +51,7 @@ const TweetsApiContextProvider = ({children}: PropsWithChildren) => {
        }
        
        
-       if (res.status != 200) {
+       if (res.status !== 200) {
           throw new Error("Error fetching tweets");
        }
         return await res.json();
@@ -64,7 +64,7 @@ const TweetsApiContextProvider = ({children}: PropsWithChildren) => {
          return;
       }
       
-       const res = await fetch(`${API_URL}/tweet/`, {
+       const res = await fetch(`${API_URL}/tweet`, {
          method: 'POST',
          headers: {
             Authorization: `Bearer ${authToken}`,
@@ -79,7 +79,7 @@ const TweetsApiContextProvider = ({children}: PropsWithChildren) => {
        }
        
        
-       if (res.status != 200) {
+       if (res.status !== 200) {
           throw new Error("Error creating tweet");
        }
         return await res.json();

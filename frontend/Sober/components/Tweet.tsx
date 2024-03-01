@@ -1,5 +1,4 @@
 import {View, Text, Image, StyleSheet, Pressable } from 'react-native';
-import tweets from '@/assets/data/tweets';
 import {TweetType} from '@/types';
 import { Entypo } from '@expo/vector-icons';
 import IconButton from './IconButton';
@@ -40,7 +39,6 @@ const Tweet = ({tweet}: TweetProps) => {
            <IconButton icon='retweet' text={tweet.numberOfRetweets} />
            <IconButton icon='heart' text={tweet.numberOfLikes} />
            <IconButton icon='chart' text={tweet.impressions || 0} />
-           <IconButton icon='comment' text={tweet.numberOfComments} />
            <IconButton icon='share-apple'/>
                    
         </View>
