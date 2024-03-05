@@ -5,7 +5,7 @@ export const login = async (data: {email: string}) => {
   const res = await fetch(`${API_URL}/auth/login`, {
      method:  'POST',
      headers: {
-       'Content-type': 'Application/json',
+       'Content-Type': 'application/json',
      },
      
      body: JSON.stringify(data),
