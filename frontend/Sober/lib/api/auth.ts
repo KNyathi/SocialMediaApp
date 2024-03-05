@@ -21,7 +21,7 @@ export const authenticate = async (data: { email: string; emailToken: string;}) 
      const res = await fetch(`${API_URL}/auth/authenticate`, {
      method:  'POST',
      headers: {
-       'Content-type': 'Application/json',
+       'Content-Type': 'application/json',
      },
      
      body: JSON.stringify(data),
